@@ -17,11 +17,7 @@ export function getServerSideProps(ctx: NextPageContext): { props: HomeProps } {
     return { props };
   }
 
-  if (req.headers["x-real-ip"]) {
-    props.ip = req.connection.remoteAddress ?? "unknown";
-    return { props };
-  }
-
+  props.ip = req.connection.remoteAddress as string;
   return { props };
 }
 
