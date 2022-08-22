@@ -1,11 +1,15 @@
-import type { NextPage } from 'next'
+import type { NextPage, NextPageContext } from "next";
 
-const Home: NextPage = () => {
-  return (
-    <div>
-      Current IP:
-    </div>
-  )
+interface HomeProps {
+  ip: string;
+}
+
+export function getServerSideProps(_ctx: NextPageContext): { props: HomeProps } {
+  return { props: { ip: 'unknown' } };
+}
+
+const Home: NextPage<HomeProps> = (props: HomeProps) => {
+  return <div>Current IP: {props.ip}</div>;
 };
 
-export default Home
+export default Home;
